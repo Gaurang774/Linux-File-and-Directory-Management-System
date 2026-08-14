@@ -32,24 +32,67 @@ src/
 
 ---
 
-## 🚀 Quick Start (Build & Run in Linux / WSL)
+## 🛠️ Step-by-Step Installation & Setup Guide
 
-### 1. Prerequisites
-Ensure `g++` (C++17 support), `cmake`, and `make` are installed:
+### Option A: On Native Linux (Ubuntu / Debian / Arch / Fedora)
+
+#### 1. Install Build Dependencies
 ```bash
-sudo apt-get update && sudo apt-get install -y g++ cmake make
+# Ubuntu / Debian
+sudo apt-get update && sudo apt-get install -y g++ cmake make git
+
+# Fedora / RHEL
+sudo dnf install -y gcc-c++ cmake make git
+
+# Arch Linux
+sudo pacman -S gcc cmake make git
 ```
 
-### 2. Build the Project
+#### 2. Clone & Build
 ```bash
-git clone <your-repo-url>
-cd "OS Mini Project"
+git clone https://github.com/Gaurang774/Linux-File-and-Directory-Management-System.git
+cd Linux-File-and-Directory-Management-System
 mkdir -p build && cd build
 cmake .. && make -j$(nproc)
 ```
 
-### 3. Run Unit Tests
+---
+
+### Option B: On Windows (using WSL — Windows Subsystem for Linux)
+
+Since `file-mgr` utilizes POSIX system calls (`unistd.h`, `sys/stat.h`, `fcntl.h`), it runs seamlessly on Windows via **WSL**:
+
+#### 1. Install WSL (if not already installed)
+Open **PowerShell** as Administrator and run:
+```powershell
+wsl --install
+```
+*(Restart your PC if prompted).*
+
+#### 2. Open WSL Terminal & Install Build Tools
+Open PowerShell or Windows Terminal, enter Linux environment, and install dependencies:
 ```bash
+wsl
+sudo apt-get update && sudo apt-get install -y g++ cmake make git
+```
+
+#### 3. Clone & Build inside WSL
+```bash
+# Navigate to your project directory (e.g. drive D: or Linux home)
+cd /mnt/d/
+git clone https://github.com/Gaurang774/Linux-File-and-Directory-Management-System.git
+cd Linux-File-and-Directory-Management-System
+mkdir -p build && cd build
+cmake .. && make -j$(nproc)
+```
+
+---
+
+## 🧪 Testing & Verification
+
+Run the automated CTest suite to verify all core components:
+```bash
+cd build
 ctest --output-on-failure
 ```
 
@@ -57,7 +100,8 @@ ctest --output-on-failure
 
 ## 💻 Usage Examples
 
-### Option A: Interactive REPL Shell Mode
+### 1. Interactive REPL Shell Mode
+Launch the interactive shell by running `./file-mgr` with no arguments:
 ```bash
 ./file-mgr
 ```
@@ -74,7 +118,7 @@ file-mgr [/mnt/d/OS Mini Project]> tree . --depth 2
 file-mgr [/mnt/d/OS Mini Project]> exit
 ```
 
-### Option B: Single CLI Commands
+### 2. Single CLI Commands
 ```bash
 ./file-mgr ls -la /tmp                      # Long listing including hidden files
 ./file-mgr tree . --depth 2                  # Visual tree representation
