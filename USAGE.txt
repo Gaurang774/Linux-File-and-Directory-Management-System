@@ -1,0 +1,135 @@
+===============================================================================
+               file-mgr — Quick Start & Usage Guide
+===============================================================================
+
+Welcome to file-mgr, a modern Linux File and Directory Management System!
+
+===============================================================================
+HOW TO ENTER THE INTERACTIVE REPL SHELL
+===============================================================================
+
+1. Open your WSL terminal (gaura@LOQ:~$)
+2. Run these two commands:
+
+   cd /mnt/d/"OS Mini Project"/build
+   ./file-mgr
+
+Now you are in the Interactive Shell (file-mgr [/path]>).
+
+
+===============================================================================
+MODE 1: INSIDE THE INTERACTIVE SHELL (file-mgr [/path]>)
+===============================================================================
+
+Inside the REPL shell, you can type commands directly (or even with ./file-mgr):
+
+   # Create a file
+   touch notes.txt                  (or ./file-mgr touch notes.txt)
+
+   # Write content to a file
+   write notes.txt "Hello Linux!"
+
+   # Append more text
+   write notes.txt "Second line" --append
+
+   # Read file contents
+   cat notes.txt
+
+   # View file metadata
+   stat notes.txt
+
+   # List files
+   ls -la
+
+   # Navigate directories
+   cd ..
+   pwd
+
+   # Tree view
+   tree . --depth 2
+
+   # Exit REPL back to normal Linux shell
+   exit
+
+
+===============================================================================
+MODE 2: SINGLE BASH COMMANDS (gaura@LOQ:.../build$)
+===============================================================================
+
+From your normal Linux terminal prompt, prefix commands with ./file-mgr:
+
+   ./file-mgr touch notes.txt
+   ./file-mgr write notes.txt "Hello!"
+   ./file-mgr cat notes.txt
+   ./file-mgr stat notes.txt
+   ./file-mgr ls -la .
+   ./file-mgr tree . --depth 2
+   ./file-mgr find "*.cpp" . --type f
+   ./file-mgr du . --top 5
+
+
+===============================================================================
+QUICK COMMAND REFERENCE
+===============================================================================
+
+  Command                  Description
+  -----------------------  --------------------------------------------------
+  touch <file>             Create an empty file
+  write <file> <content>   Write/overwrite text into a file
+  write <file> <text> -a   Append text to a file
+  cat <file>               Display file content
+  ls [path]                List directory contents (-la for all/long format)
+  tree [path]              Display visual directory tree (--depth N)
+  pwd                      Print working directory
+  cd <dir>                 Change directory (inside REPL)
+  find <pattern> [path]    Search files by name/type/size (--type f|d)
+  du [path]                Disk usage analysis (--summary, --top N)
+  chmod <mode> <file>      Change permissions (e.g., 755 or u+x)
+  stat <path>              Show detailed file metadata
+  cp <src> <dst>           Copy file or directory (-r for recursive)
+  mv <src> <dst>           Move or rename file/directory
+  rm <path>                Remove file or directory (-r for recursive)
+  clear                    Clear screen
+  help                     Show detailed help menu
+  exit                     Quit interactive shell
+
+
+===============================================================================
+WHAT MORE WE CAN DO (FUTURE ENHANCEMENTS & ADVANCED FEATURES)
+===============================================================================
+
+Here are the advanced features we can add next to expand the system:
+
+1. FILE COMPRESSION & ARCHIVING (pack / unpack)
+   ----------------------------------------------------------------------------
+   • file-mgr pack archive.tar.gz ./folder
+     Compresses files or directories into .tar / .tar.gz format.
+   • file-mgr unpack archive.tar.gz ./destination
+     Extracts archived files back into a directory.
+
+2. REAL-TIME FILE WATCHING (watch)
+   ----------------------------------------------------------------------------
+   • file-mgr watch ./my_folder
+     Uses Linux inotify APIs to monitor a folder in real time and print live
+     notifications whenever files are created, modified, or deleted.
+
+3. CHECKSUM & FILE COMPARISON (hash / diff)
+   ----------------------------------------------------------------------------
+   • file-mgr hash notes.txt
+     Calculates MD5 / SHA-256 cryptographic hashes to verify file integrity.
+   • file-mgr diff file1.txt file2.txt
+     Compares two text files line-by-line and highlights differences.
+
+4. TRANSACTION LOG & UNDO / REDO SYSTEM (history / undo)
+   ----------------------------------------------------------------------------
+   • file-mgr history
+     Shows a persistent log of all file operations (created, moved, deleted).
+   • file-mgr undo
+     Rolls back the last destructive file operation (restores deleted files or moves).
+
+5. TAB AUTO-COMPLETION & MAN PAGE INTEGRATION
+   ----------------------------------------------------------------------------
+   • Bash/Zsh tab-completion script for file-mgr commands and path completion.
+   • System man page (`man file-mgr`) installation support.
+
+===============================================================================
